@@ -1,0 +1,9 @@
+Accept: */*
+Content-Type: application/json
+Referer: https://www.vehiclehistory.com/vin-report/3N1AB7AP8DL794163
+Sec-Ch-Ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en
+User-Agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36
+Accept-Encoding: gzip, deflate

@@ -1,0 +1,9 @@
+Accept: */*
+Content-Type: application/json
+Referer: https://www.vehiclehistory.com/vin-report/1FTRF17W31NB56107
+Sec-Ch-Ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36
+Accept-Encoding: gzip, deflate

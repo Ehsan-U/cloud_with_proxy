@@ -1,0 +1,11 @@
+Content-Length: 41
+Content-Type: application/json
+Date: Wed, 05 Jan 2022 05:56:33 GMT
+X-Amzn-Requestid: cdf696c4-aa4a-40d3-a0b3-829711edd153
+X-Amzn-Errortype: InternalServerErrorException
+X-Amz-Apigw-Id: LdTmNEJjyK4FRbA=
+Via: 1.1 bafea69ec4368ee11760779ffcfbd4fc.cloudfront.net (CloudFront), 1.1 11db54d41dc7b64f760df4a169363db2.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: FRA56-P3
+X-Amz-Cf-Pop: MRS52-P2
+X-Cache: Error from cloudfront
+X-Amz-Cf-Id: tY1i0lM5aC2fN5YLmA_mJjqMXyMRaOoAP3YBF_36LcCgkj-45cGnmg==
