@@ -1,0 +1,9 @@
+Accept: */*
+Content-Type: application/json
+Referer: https://www.vehiclehistory.com/vin-report/JN1EV7AP3HM734506
+Sec-Ch-Ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; ko-KR) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27
+Accept-Encoding: gzip, deflate

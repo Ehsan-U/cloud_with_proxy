@@ -1,0 +1,9 @@
+Accept: */*
+Content-Type: application/json
+Referer: https://www.vehiclehistory.com/vin-report/1C4NJPBA5FD409680
+Sec-Ch-Ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36
+Accept-Encoding: gzip, deflate

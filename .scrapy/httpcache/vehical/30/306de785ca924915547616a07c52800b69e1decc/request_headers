@@ -1,0 +1,9 @@
+Accept: */*
+Content-Type: application/json
+Referer: https://www.vehiclehistory.com/vin-report/3FADP4BJ3KM148823
+Sec-Ch-Ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; de-DE) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4
+Accept-Encoding: gzip, deflate

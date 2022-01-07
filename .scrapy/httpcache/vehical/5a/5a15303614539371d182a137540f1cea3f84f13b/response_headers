@@ -1,0 +1,16 @@
+Content-Length: 12249
+Content-Type: application/json
+Date: Thu, 06 Jan 2022 05:58:30 GMT
+X-Amzn-Requestid: d5506125-3c2b-4d39-87e2-307f7eaadcd0
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+X-Amzn-Remapped-Content-Length: 40175
+X-Amz-Apigw-Id: Lgm44H1nyK4FmEg=
+Cache-Control: max-age=2592000, public
+X-Amzn-Trace-Id: Root=1-61d68505-7b0d4d79211028f358ce0c70;Sampled=0
+Access-Control-Allow-Credentials: true
+Via: 1.1 c4084ad1fdf68c421001efad60b9b357.cloudfront.net (CloudFront), 1.1 7a78614ce0add4583529e8e6dfe2b5c4.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: DUB2-C1
+X-Amz-Cf-Pop: MRS52-C1
+X-Cache: Miss from cloudfront
+X-Amz-Cf-Id: GOQ3UgMLHXQfro_Zq4Y_AaY1LUKK_wQn6pKMxMZiythPf77CubWFgQ==
