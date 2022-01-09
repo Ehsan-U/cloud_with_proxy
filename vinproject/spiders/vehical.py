@@ -26,7 +26,7 @@ class VehicalSpider(scrapy.Spider):
     def take_vins(self):
         if self.one_time:
             self.one_time = False
-            with open('/home/zorin/vinproject/vinproject/spiders/10000_.json','r') as f:
+            with open('/home/zorin/vinproject/vinproject/spiders/100000_.json','r') as f:
                 self.vin_list = json.load(f)
                 return self.take_vins()
         else:
@@ -36,7 +36,7 @@ class VehicalSpider(scrapy.Spider):
     def save_game(self):
         now = datetime.now()
         current = now.strftime("%H:%M:%S").replace(':','')
-        with open(f'file{current}.json','w') as file:
+        with open(f'rem_file.json','w') as file:
             json.dump(self.vin_list,file)
             print('\n\nGame Saved!\n\n')
 
@@ -82,8 +82,8 @@ class VehicalSpider(scrapy.Spider):
         if failure.check(HttpError):
             status = failure.value.response.status
             logging.error(f'\nHttpError on {failure.value.response.url} > {status}\n')
-            print('\n[+] Chaning IP\n')
-            self.rotate_ip()
+            #print('\n[+] Chaning IP\n')
+            #self.rotate_ip()
             self.custom_parse(None)
 
     def parse(self, response):
