@@ -6,12 +6,13 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from openpyxl import Workbook
-import openpyxl
+#from openpyxl import Workbook
+#import openpyxl
 import string
-from openpyxl.styles.fonts import Font
+#from openpyxl.styles.fonts import Font
 import os
 
+'''
 class ExcelWriter():
 
     def __init__(self):
@@ -48,3 +49,23 @@ class ExcelWriter():
         for letter,label in zip(alphabets,labels):
             self.specs_sheet[f'{letter}1'].value = label
             self.specs_sheet[f'{letter}1'].font = Font(bold=True)
+'''
+import pymongo
+
+class MongoCloud():
+    collection = 'Vins'
+
+    def __init__(self):
+        self.mongo_uri = 'mongodb+srv://root:toor@cluster0.tdhpu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' 
+        self.mongi_db = 'vehical_2015'
+
+    def open_spider(self,spider):
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongi_db]
+
+    def close_spider(self,spider):
+        self.client.close()
+
+    def process_item(self,item,spider):
+        self.db[self.collection].insert_one(dict(item))
+        return item
