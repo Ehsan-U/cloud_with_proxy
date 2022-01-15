@@ -1,4 +1,4 @@
-from tkinter import N
+
 import scrapy
 import json
 from datetime import datetime
