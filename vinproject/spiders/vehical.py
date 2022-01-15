@@ -1,14 +1,37 @@
+from tkinter import N
 import scrapy
 import json
 from datetime import datetime
 import sys
 from scrapy.spidermiddlewares.httperror import HttpError
 import logging
-from nordvpn_switcher import initialize_VPN,rotate_VPN,terminate_VPN
 import requests
-import windscribe
+import asyncio
+from proxybroker import Broker
+from random import choice
 
+class Myproxies():
+    def __init__(self):
+        self.proxie = list()
+        self.proxies = asyncio.Queue()
+        self.broker = Broker(self.proxies)
+        
+    def setupp(self):
+        tasks = asyncio.gather(
+        self.broker.find(types=['HTTP', 'HTTPS'], limit=1),
+        self.show(self.proxies))
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(tasks)
 
+    async def show(self,proxies):
+        while True:
+            proxy = await proxies.get()
+            if proxy is None:
+                break
+            else:
+                await self.send(proxy)
+    async def send(self,proxy):
+        self.proxie.append(f"{proxy.host}:{proxy.port}")
 
 class VehicalSpider(scrapy.Spider):
     name = 'vehical'
@@ -18,15 +41,22 @@ class VehicalSpider(scrapy.Spider):
     one_time = True
     features = ['Braking Assist','Blind Spot Monitoring','Adaptive Cruise Control','Lane Keep Assist','Lane Departure Warning','Automatic Breaking']
     ######
-    response = requests.get('http://httpbin.org/ip').content
-    dict = json.loads(response)
-    my_ip = dict.get('origin')
-    ######
+    # response = requests.get('http://httpbin.org/ip').content
+    # dict = json.loads(response)
+    # my_ip = dict.get('origin')
+    proxy = ''
+    def fetch_proxy(self):
+        p = Myproxies()
+        p.setupp()
+        self.proxy = p.proxie[0]
+        # return ip only, use for in url
+        return self.proxy.split(':')[0]
+    ############
 
     def take_vins(self):
         if self.one_time:
             self.one_time = False
-            with open('/home/zorin/vinproject/vinproject/spiders/100000_.json','r') as f:
+            with open('1000_.json','r') as f:
                 self.vin_list = json.load(f)
                 return self.take_vins()
         else:
@@ -42,8 +72,8 @@ class VehicalSpider(scrapy.Spider):
 
     def start_requests(self):
         vin = self.take_vins()
-        url = 'https://www.vehiclehistory.com/data?operationName=getVinChainReport&variables={"vin":"{v}","ip":"{ip}"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d465778edd4c81cbddc47b642fe9587b5c47a15195d746b02d0c5930ffcefb5b"}}'.replace('{v}',vin).replace('{ip}',self.my_ip)
-        yield scrapy.Request(url,callback=self.custom_parse,errback=self.catch,meta={'vin':vin},headers={
+        url = 'https://www.vehiclehistory.com/data?operationName=getVinChainReport&variables={"vin":"{v}","ip":"{ip}"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d465778edd4c81cbddc47b642fe9587b5c47a15195d746b02d0c5930ffcefb5b"}}'.replace('{v}',vin).replace('{ip}',self.fetch_proxy())
+        yield scrapy.Request(url,callback=self.custom_parse,errback=self.catch,meta={'proxy':self.proxy,'vin':vin},headers={
             'accept':'*/*',
             'content-type':'application/json',
             'Referer':f'https://www.vehiclehistory.com/vin-report/{vin}',
@@ -56,8 +86,8 @@ class VehicalSpider(scrapy.Spider):
         self.parse(response)
         for vin in self.vin_list:
             try:
-                url = 'https://www.vehiclehistory.com/data?operationName=getVinChainReport&variables={"vin":"{v}","ip":"{ip}"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d465778edd4c81cbddc47b642fe9587b5c47a15195d746b02d0c5930ffcefb5b"}}'.replace('{v}',vin).replace('{ip}',self.my_ip)
-                yield scrapy.Request(url,callback=self.parse,errback=self.catch,meta={'vin':vin},headers={
+                url = 'https://www.vehiclehistory.com/data?operationName=getVinChainReport&variables={"vin":"{v}","ip":"{ip}"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d465778edd4c81cbddc47b642fe9587b5c47a15195d746b02d0c5930ffcefb5b"}}'.replace('{v}',vin).replace('{ip}',self.fetch_proxy())
+                yield scrapy.Request(url,callback=self.parse,errback=self.catch,meta={'proxy':self.proxy,'vin':vin},headers={
                     'accept':'*/*',
                     'content-type':'application/json',
                     'Referer':f'https://www.vehiclehistory.com/vin-report/{vin}',
@@ -69,12 +99,12 @@ class VehicalSpider(scrapy.Spider):
                 self.save_game()
 
     def rotate_ip(self):
-        windscribe.login('bipevo7717', 'bipevo7717@wwdee.com')
-        windscribe.connect(rand=True)
+        #windscribe.login('bipevo7717', 'bipevo7717@wwdee.com')
+        #windscribe.connect(rand=True)
         # checking new ip
         response = requests.get('http://httpbin.org/ip').content
         dict = json.loads(response)
-        self.my_ip = dict.get('origin')
+        #self.my_ip = dict.get('origin')
 
 
     def catch(self,failure):
